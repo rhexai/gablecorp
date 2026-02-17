@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Hero() {
@@ -26,9 +27,19 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6">
-                        <Link href="/insights" className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
-                            Read our latest insights
-                        </Link>
+                        <SignedIn>
+                            <Link href="/dashboard" className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+                                Go to Dashboard
+                            </Link>
+                        </SignedIn>
+                        <SignedOut>
+                            <SignInButton mode="modal">
+                                <button className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+                                    Get Started
+                                </button>
+                            </SignInButton>
+                        </SignedOut>
+
                         <Link href="/capabilities" className="w-fit px-8 py-4 bg-transparent border border-white text-white font-semibold hover:bg-white hover:text-navy-900 transition-colors">
                             Explore capabilities
                         </Link>

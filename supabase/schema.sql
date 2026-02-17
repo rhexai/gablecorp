@@ -58,3 +58,4 @@ values
     '# The future of work: Trends to watch in 2026\n\nHow remote work, AI, and changing demographics are reshaping the workforce.\n\n## 1. The rise of the hybrid workforce\n\nHybrid work is here to stay. Companies are finding new ways to balance flexibility with collaboration.\n\n## 2. AI as a coworker\n\nAI tools are becoming increasingly integrated into daily workflows, augmenting human capabilities rather than replacing them.\n\n## 3. The skills gap\n\nAs technology evolves, the demand for new skills is outpacing supply. Upskilling and reskilling are becoming critical priorities.',
     false
 );
+alter table users add column if not exists role text default 'user';
