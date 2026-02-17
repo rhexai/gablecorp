@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 
 export default function Hero() {
@@ -33,11 +33,9 @@ export default function Hero() {
                             </Link>
                         </SignedIn>
                         <SignedOut>
-                            <SignInButton mode="modal">
-                                <button className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
-                                    Get Started
-                                </button>
-                            </SignInButton>
+                            <Link href="/sign-up" className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+                                Get Started
+                            </Link>
                         </SignedOut>
 
                         <Link href="/capabilities" className="w-fit px-8 py-4 bg-transparent border border-white text-white font-semibold hover:bg-white hover:text-navy-900 transition-colors">

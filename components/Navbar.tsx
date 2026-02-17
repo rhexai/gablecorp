@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -66,11 +66,12 @@ export default function Navbar() {
                 {/* Desktop Action */}
                 <div className="hidden md:flex items-center gap-6">
                     <SignedOut>
-                        <SignInButton mode="modal">
-                            <button className="text-blue-600 font-semibold text-sm hover:underline">
-                                Sign In
-                            </button>
-                        </SignInButton>
+                        <Link href="/sign-in" className="text-gray-600 font-semibold text-sm hover:text-blue-600 transition-colors">
+                            Sign In
+                        </Link>
+                        <Link href="/sign-up" className="bg-blue-600 text-white px-5 py-2.5 rounded hover:bg-blue-700 transition-colors text-sm font-semibold">
+                            Sign Up
+                        </Link>
                     </SignedOut>
                     <SignedIn>
                         <UserButton />
@@ -122,13 +123,14 @@ export default function Navbar() {
                         </Link>
                     </nav>
 
-                    <div className="mt-auto">
+                    <div className="mt-auto flex flex-col gap-4">
                         <SignedOut>
-                            <SignInButton mode="modal">
-                                <button className="w-full py-4 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition-colors text-lg">
-                                    Sign In
-                                </button>
-                            </SignInButton>
+                            <Link href="/sign-in" onClick={() => setIsMenuOpen(false)} className="w-full py-4 border border-blue-600 text-blue-600 text-center font-semibold rounded hover:bg-blue-50 transition-colors text-lg">
+                                Sign In
+                            </Link>
+                            <Link href="/sign-up" onClick={() => setIsMenuOpen(false)} className="w-full py-4 bg-blue-600 text-white text-center font-semibold rounded hover:bg-blue-700 transition-colors text-lg">
+                                Sign Up
+                            </Link>
                         </SignedOut>
                     </div>
                 </div>
