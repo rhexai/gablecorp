@@ -18,8 +18,15 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Gablecorp | Strategic Consulting",
-  description: "Accelerating sustainable and inclusive growth.",
+  title: {
+    template: "%s | Gablecorp",
+    default: "Global Technology Consulting | Gablecorp Industries",
+  },
+  description: "Accelerating sustainable and inclusive growth through strategic consulting and innovative solutions.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

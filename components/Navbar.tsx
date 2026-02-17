@@ -10,9 +10,9 @@ export default function Navbar() {
                     <Image
                         src="/images/logo.png"
                         alt="Gablecorp Logo"
-                        width={300}
-                        height={75}
-                        className="h-20 w-auto object-contain group-hover:opacity-80 transition-opacity"
+                        width={180}
+                        height={180}
+                        className="h-28 w-auto object-contain group-hover:opacity-80 transition-opacity"
                         priority
                     />
                 </Link>

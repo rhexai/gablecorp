@@ -10,14 +10,14 @@ export default function Footer() {
                         <Image
                             src="/images/logo.png"
                             alt="Gablecorp"
-                            width={200}
-                            height={50}
-                            className="h-12 w-auto object-contain"
+                            width={120}
+                            height={120}
+                            className="h-16 w-auto object-contain"
                         />
                     </Link>
                     <div className="flex gap-4">
-                        <Link href="#" className="text-gray-500 hover:text-blue-600">LinkedIn</Link>
-                        <Link href="#" className="text-gray-500 hover:text-blue-600">Twitter</Link>
+                        <Link href="https://www.linkedin.com/company/gablecorp/" className="text-gray-500 hover:text-blue-600">LinkedIn</Link>
+                        <Link href="#" className="text-gray-500 hover:text-blue-600">Instagram</Link>
                         <Link href="#" className="text-gray-500 hover:text-blue-600">YouTube</Link>
                     </div>
                 </div>
