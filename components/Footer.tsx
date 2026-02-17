@@ -17,8 +17,8 @@ export default function Footer() {
                     </Link>
                     <div className="flex gap-4">
                         <Link href="https://www.linkedin.com/company/gablecorp/" className="text-gray-500 hover:text-blue-600">LinkedIn</Link>
-                        <Link href="https://www.linkedin.com/company/gablecorp/" className="text-gray-500 hover:text-blue-600"></Link>
-                        <Link href="https://www.linkedin.com/company/gablecorp/" className="text-gray-500 hover:text-blue-600">LinkedIn</Link>
+                        <Link href="https://x.com/gablecorp" className="text-gray-500 hover:text-blue-600">X</Link>
+                        <Link href="https://www.youtube.com/@gablecorp" className="text-gray-500 hover:text-blue-600">YouTube</Link>
                     </div>
                 </div>
 
