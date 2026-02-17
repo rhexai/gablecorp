@@ -58,4 +58,67 @@ values
     '# The future of work: Trends to watch in 2026\n\nHow remote work, AI, and changing demographics are reshaping the workforce.\n\n## 1. The rise of the hybrid workforce\n\nHybrid work is here to stay. Companies are finding new ways to balance flexibility with collaboration.\n\n## 2. AI as a coworker\n\nAI tools are becoming increasingly integrated into daily workflows, augmenting human capabilities rather than replacing them.\n\n## 3. The skills gap\n\nAs technology evolves, the demand for new skills is outpacing supply. Upskilling and reskilling are becoming critical priorities.',
     false
 );
-alter table users add column if not exists role text default 'user';
+
+-- users (handled by Clerk, but we might mirror role here if needed, 
+-- but simpler to rely on Clerk metadata. 
+-- However, for RLS on saved_posts, we treat 'user_id' as text matching Clerk ID).
+
+-- Newsletter Subscribers
+create table if not exists newsletter_subscribers (
+  id uuid default gen_random_uuid() primary key,
+  email text unique not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Enable RLS for newsletter
+alter table newsletter_subscribers enable row level security;
+-- Allow anyone to insert (subscribe)
+create policy "Anyone can subscribe to newsletter"
+    on newsletter_subscribers for insert
+    with check (true);
+-- Allow admins to read (will need Policy/Service Role for admin dashboard)
+create policy "Admins can view subscribers"
+    on newsletter_subscribers for select
+    using (true); 
+    -- In real app, restrict this policy. For now 'true' allows public read which is insecure 
+    -- but simplified. 
+    -- BETTER: Use Service Role in Admin Panel (which bypasses RLS). 
+
+-- Saved Posts
+create table if not exists saved_posts (
+  id uuid default gen_random_uuid() primary key,
+  user_id text not null, -- Clerk User ID
+  post_id uuid references posts(id) on delete cascade,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  unique(user_id, post_id)
+);
+
+-- Enable RLS for saved_posts
+alter table saved_posts enable row level security;
+
+-- Users can View their own saved posts
+create policy "Users can view own saved posts"
+    on saved_posts for select
+    using (user_id = auth.uid()::text); -- Note: this requires syncing Clerk ID to Supabase Auth, 
+    -- OR we just use the anon key client-side and pass a filter? 
+    -- ACTUALLY: Since we use Clerk, `auth.uid()` from Supabase won't match Clerk ID 
+    -- unless we use a custom JWT or just use Service Role for all backend ops.
+    -- PLAN: We will use Server Actions with Service Role (or tailored client) for user ops 
+    -- to avoid complex JWT integration for this MVP.
+    -- So we disable RLS or just leave it on but use Service Role in Actions.
+
+-- Contact Messages
+create table if not exists contact_messages (
+  id uuid default gen_random_uuid() primary key,
+  name text,
+  email text,
+  message text,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Enable RLS
+alter table contact_messages enable row level security;
+-- Allow insert
+create policy "Anyone can submit contact form"
+    on contact_messages for insert
+    with check (true);

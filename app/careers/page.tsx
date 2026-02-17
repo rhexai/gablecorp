@@ -39,13 +39,18 @@ export default function CareersPage() {
                             </ul>
                         </div>
                         <div className="bg-gray-100 rounded-lg p-8 flex flex-col justify-center">
-                            <h3 className="text-2xl font-bold text-navy-900 mb-4">Search Jobs</h3>
-                            <div className="bg-white p-2 rounded flex shadow-sm mb-4">
-                                <input type="text" placeholder="Keyword" className="flex-grow px-4 py-2 outline-none text-gray-700" />
-                                <button className="bg-blue-600 text-white px-6 py-2 rounded font-medium">Search</button>
-                            </div>
-                            <p className="text-sm text-gray-500">
-                                Browse all open positions by role, location, or industry.
+                            <h3 className="text-2xl font-bold text-navy-900 mb-4">Join Our Talent Network</h3>
+                            <p className="text-gray-600 mb-6 text-sm">
+                                Not ready to apply? Connect with us for career advice, industry insights, and personalized job recommendations.
+                            </p>
+                            <form className="space-y-4">
+                                <input type="email" placeholder="Email Address" className="w-full px-4 py-3 outline-none border border-gray-300 focus:border-blue-600 transition-colors" />
+                                <button type="button" className="w-full bg-blue-600 text-white px-6 py-3 font-medium hover:bg-blue-700 transition-colors">
+                                    Join Network
+                                </button>
+                            </form>
+                            <p className="text-xs text-gray-500 mt-4">
+                                By joining, you agree to our Privacy Policy.
                             </p>
                         </div>
                     </div>

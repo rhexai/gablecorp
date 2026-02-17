@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
 import Link from 'next/link';
+import SavePostButton from '../../../components/SavePostButton';
+import { getSavedStatus } from '../../actions/user';
 
 interface PageProps {
     params: Promise<{
@@ -23,6 +25,8 @@ export default async function InsightPage({ params }: PageProps) {
         notFound();
     }
 
+    const isSaved = await getSavedStatus(post.id);
+
     return (
         <main className="bg-white min-h-screen flex flex-col">
             <Navbar />
@@ -30,12 +34,20 @@ export default async function InsightPage({ params }: PageProps) {
             {/* Article Header */}
             <section className="bg-navy-900 pt-32 pb-20 px-6 md:px-12 text-white">
                 <div className="max-w-4xl mx-auto text-center">
-                    <span className="inline-block py-1 px-3 border border-blue-400 text-blue-400 text-xs font-bold tracking-widest uppercase mb-6 rounded-full">
-                        {post.category}
-                    </span>
+                    <div className="flex justify-center items-center gap-4 mb-6">
+                        <span className="inline-block py-1 px-3 border border-blue-400 text-blue-400 text-xs font-bold tracking-widest uppercase rounded-full">
+                            {post.category}
+                        </span>
+                    </div>
+
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif mb-8 leading-tight">
                         {post.title}
                     </h1>
+
+                    <div className="flex justify-center mb-8">
+                        <SavePostButton postId={post.id} initialSaved={isSaved} />
+                    </div>
+
                     <p className="text-xl text-gray-300 font-light leading-relaxed max-w-3xl mx-auto">
                         {post.excerpt}
                     </p>

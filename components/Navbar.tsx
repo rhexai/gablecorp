@@ -5,6 +5,29 @@ import Link from "next/link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 
+import { useUser } from "@clerk/nextjs";
+
+function AdminLink() {
+    const { user } = useUser();
+
+    if (!user) return null;
+
+    const superAdminEmail = process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL;
+    const isSuperAdmin = user.emailAddresses.some(
+        (email) => email.emailAddress === superAdminEmail
+    );
+    const isAdmin = user.publicMetadata?.role === 'admin';
+
+    if (isSuperAdmin || isAdmin) {
+        return (
+            <Link href="/admin" className="text-[15px] font-medium text-navy-900 font-bold hover:text-blue-600 transition-colors">
+                Admin
+            </Link>
+        );
+    }
+    return null;
+}
+
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -45,9 +68,18 @@ export default function Navbar() {
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-10">
                     <SignedIn>
-                        <Link href="/dashboard" className="text-[15px] font-medium text-gray-900 font-bold hover:text-blue-600 transition-colors">
+                        <Link href="/dashboard" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                             Dashboard
                         </Link>
+                        {/* 
+                             ideally we'd check roles here, but client-side role checking 
+                            should be consistent with server-side. For now, we can link both 
+                            or hide 'Admin' if not appropriate. 
+                            Since we can't easily access ENV vars or Metadata synchronously in client components without hooks:
+                            We'll link both and let the middleware/layout handle access control.
+                            However, to be cleaner, we should use the useUser hook.
+                        */}
+                        <AdminLink />
                     </SignedIn>
                     <Link href="/capabilities" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Capabilities
@@ -105,9 +137,12 @@ export default function Navbar() {
                 <div className="flex flex-col h-full pt-28 px-6 pb-12 overflow-y-auto">
                     <nav className="flex flex-col gap-8 text-2xl font-serif text-navy-900">
                         <SignedIn>
-                            <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 font-bold">
+                            <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                                 Dashboard
                             </Link>
+                            <div onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                                <AdminLink />
+                            </div>
                         </SignedIn>
                         <Link href="/capabilities" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                             Capabilities
