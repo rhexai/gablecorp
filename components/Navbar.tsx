@@ -13,25 +13,25 @@ export default function Navbar() {
 
                 {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-10">
-                    <Link href="#capabilities" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                    <Link href="/capabilities" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Capabilities
                     </Link>
-                    <Link href="#industries" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                    <Link href="/industries" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Industries
                     </Link>
-                    <Link href="#insights" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                    <Link href="/insights" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Insights
                     </Link>
-                    <Link href="#careers" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                    <Link href="/careers" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Careers
                     </Link>
                 </div>
 
                 {/* Action / Mobile */}
                 <div className="flex items-center gap-6">
-                    <button className="hidden md:block text-blue-600 font-semibold text-sm hover:underline">
+                    <Link href="/signin" className="hidden md:block text-blue-600 font-semibold text-sm hover:underline">
                         Sign In
-                    </button>
+                    </Link>
                     <button className="md:hidden text-navy-900">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

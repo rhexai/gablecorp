@@ -20,7 +20,7 @@ export default function Footer() {
                     <ul className="space-y-3 text-sm text-gray-600">
                         <li><Link href="#" className="hover:text-blue-600 transition-colors">Our Firm</Link></li>
                         <li><Link href="#" className="hover:text-blue-600 transition-colors">Our People</Link></li>
-                        <li><Link href="#" className="hover:text-blue-600 transition-colors">Careers</Link></li>
+                        <li><Link href="/careers" className="hover:text-blue-600 transition-colors">Careers</Link></li>
                         <li><Link href="#" className="hover:text-blue-600 transition-colors">Contact Us</Link></li>
                     </ul>
                 </div>
@@ -28,9 +28,9 @@ export default function Footer() {
                 <div>
                     <h3 className="font-bold mb-4">Insights</h3>
                     <ul className="space-y-3 text-sm text-gray-600">
-                        <li><Link href="#" className="hover:text-blue-600 transition-colors">Featured</Link></li>
-                        <li><Link href="#" className="hover:text-blue-600 transition-colors">Industries</Link></li>
-                        <li><Link href="#" className="hover:text-blue-600 transition-colors">Themes</Link></li>
+                        <li><Link href="/insights" className="hover:text-blue-600 transition-colors">Featured</Link></li>
+                        <li><Link href="/industries" className="hover:text-blue-600 transition-colors">Industries</Link></li>
+                        <li><Link href="/capabilities" className="hover:text-blue-600 transition-colors">Capabilities</Link></li>
                     </ul>
                 </div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
             <div className="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-gray-100 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center">
                 <p>&copy; {new Date().getFullYear()} Gablecorp. All rights reserved.</p>
                 <div className="flex gap-6 mt-4 md:mt-0">
-                    <Link href="#" className="hover:text-blue-600">Privacy Policy</Link>
+                    <Link href="/privacy-policy" className="hover:text-blue-600">Privacy Policy</Link>
                     <Link href="#" className="hover:text-blue-600">Terms of Use</Link>
                     <Link href="#" className="hover:text-blue-600">Cookie Preferences</Link>
                 </div>

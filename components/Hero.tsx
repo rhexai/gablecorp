@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
     return (
         <section className="relative h-[85vh] w-full flex items-center overflow-hidden bg-navy-900">
@@ -24,12 +26,12 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6">
-                        <button className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
+                        <Link href="/insights" className="w-fit px-8 py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors">
                             Read our latest insights
-                        </button>
-                        <button className="w-fit px-8 py-4 bg-transparent border border-white text-white font-semibold hover:bg-white hover:text-navy-900 transition-colors">
+                        </Link>
+                        <Link href="/capabilities" className="w-fit px-8 py-4 bg-transparent border border-white text-white font-semibold hover:bg-white hover:text-navy-900 transition-colors">
                             Explore capabilities
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
