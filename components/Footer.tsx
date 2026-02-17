@@ -58,9 +58,9 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-gray-100 text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center">
+            <div className="max-w-[1400px] mx-auto mt-16 pt-8 border-t border-gray-100 text-sm md:text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
                 <p>&copy; {new Date().getFullYear()} Gablecorp. BN363240425 All rights reserved. </p>
-                <div className="flex gap-6 mt-4 md:mt-0">
+                <div className="flex flex-col md:flex-row gap-4 md:gap-6 mt-6 md:mt-0">
                     <Link href="/privacy-policy" className="hover:text-blue-600">Privacy Policy</Link>
                     <Link href="#" className="hover:text-blue-600">Terms of Use</Link>
                     <Link href="#" className="hover:text-blue-600">Cookie Preferences</Link>
