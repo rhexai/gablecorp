@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -6,9 +7,14 @@ export default function Navbar() {
             <div className="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
                 {/* Logo */}
                 <Link href="/" className="group flex flex-col justify-center">
-                    <span className="font-serif text-2xl font-bold tracking-tight text-navy-900 group-hover:opacity-80 transition-opacity">
-                        GABLECORP
-                    </span>
+                    <Image
+                        src="/images/logo.png"
+                        alt="Gablecorp Logo"
+                        width={300}
+                        height={75}
+                        className="h-20 w-auto object-contain group-hover:opacity-80 transition-opacity"
+                        priority
+                    />
                 </Link>
 
                 {/* Desktop Navigation */}

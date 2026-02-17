@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -5,8 +6,14 @@ export default function Footer() {
         <footer className="bg-white border-t border-gray-200 py-16 px-6 md:px-12 text-navy-900">
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div className="col-span-1 md:col-span-1">
-                    <Link href="/" className="text-xl font-serif font-bold tracking-tight text-navy-900 mb-6 block">
-                        GABLECORP
+                    <Link href="/" className="mb-6 block">
+                        <Image
+                            src="/images/logo.png"
+                            alt="Gablecorp"
+                            width={200}
+                            height={50}
+                            className="h-12 w-auto object-contain"
+                        />
                     </Link>
                     <div className="flex gap-4">
                         <Link href="#" className="text-gray-500 hover:text-blue-600">LinkedIn</Link>
