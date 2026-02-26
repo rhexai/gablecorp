@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HowWeHelp() {
     return (
-        <section className="bg-navy-900 text-white py-16 md:py-24">
+        <section className="bg-navy-900 text-white py-16 md:py-24 overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                 <div className="text-center mb-12 md:mb-16">
                     <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">How We Help Clients</span>

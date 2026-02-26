@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function CareersCTA() {
     return (
-        <section className="bg-white">
+        <section className="bg-white overflow-hidden">
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2">
                 {/* Text Side */}
                 <div className="p-12 md:p-24 flex flex-col justify-center bg-gray-50 lg:bg-white order-2 lg:order-1">

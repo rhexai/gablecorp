@@ -1,6 +1,6 @@
 export default function ImpactBanner() {
     return (
-        <section className="bg-blue-600 text-white py-20 md:py-32 text-center">
+        <section className="bg-blue-600 text-white py-20 md:py-32 text-center overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6">
                 <span className="text-sm font-bold tracking-widest uppercase mb-6 block opacity-80">Societal Impact</span>
                 <h2 className="text-3xl md:text-4xl lg:text-6xl font-serif leading-tight max-w-4xl mx-auto">

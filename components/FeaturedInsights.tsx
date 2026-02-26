@@ -20,7 +20,7 @@ export default async function FeaturedInsights() {
         .limit(3);
 
     return (
-        <section id="insights" className="py-16 md:py-24 bg-white">
+        <section id="insights" className="py-16 md:py-24 bg-white overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4">
                     <h2 className="text-3xl md:text-4xl font-serif font-medium text-navy-900">
