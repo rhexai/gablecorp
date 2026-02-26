@@ -14,9 +14,9 @@ export default async function DashboardLayout({
         redirect("/sign-in");
     }
 
-    const superAdminEmail = process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL;
+    const superAdminEmail = process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL?.toLowerCase();
     const isSuperAdmin = user.emailAddresses.some(
-        (email) => email.emailAddress === superAdminEmail
+        (email) => email.emailAddress.toLowerCase() === superAdminEmail
     );
 
     // Check for admin role in metadata

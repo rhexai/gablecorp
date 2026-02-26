@@ -12,9 +12,9 @@ function AdminLink() {
 
     if (!user) return null;
 
-    const superAdminEmail = process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL;
+    const superAdminEmail = process.env.NEXT_PUBLIC_SUPER_ADMIN_EMAIL?.toLowerCase();
     const isSuperAdmin = user.emailAddresses.some(
-        (email) => email.emailAddress === superAdminEmail
+        (email) => email.emailAddress.toLowerCase() === superAdminEmail
     );
     const isAdmin = user.publicMetadata?.role === 'admin';
 
@@ -90,6 +90,9 @@ export default function Navbar() {
                     <Link href="/insights" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Insights
                     </Link>
+                    <Link href="https://scriptlabs.gablecorp.com" target="_blank" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                        Scriptlabs Digital
+                    </Link>
                     <Link href="/careers" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Careers
                     </Link>
@@ -152,6 +155,9 @@ export default function Navbar() {
                         </Link>
                         <Link href="/insights" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                             Insights
+                        </Link>
+                        <Link href="https://scriptlabs.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                            Scriptlabs Digital
                         </Link>
                         <Link href="/careers" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                             Careers
