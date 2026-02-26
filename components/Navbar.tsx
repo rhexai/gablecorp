@@ -143,29 +143,29 @@ export default function Navbar() {
                 <div className="flex flex-col h-full pt-28 px-6 pb-12 overflow-y-auto">
                     <nav className="flex flex-col gap-8 text-2xl font-serif text-navy-900">
                         <SignedIn>
-                            <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                            <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                                 Dashboard
                             </Link>
                             <div onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                                 <AdminLink />
                             </div>
                         </SignedIn>
-                        <Link href="/capabilities" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                        <Link href="/capabilities" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                             Capabilities
                         </Link>
-                        <Link href="/industries" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                        <Link href="/industries" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                             Industries
                         </Link>
-                        <Link href="/insights" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                        <Link href="/insights" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                             Insights
                         </Link>
-                        <Link href="https://scriptlabs.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                        <Link href="https://scriptlabs.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                             Scriptlabs Digital
                         </Link>
-                        <Link href="https://miva.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                        <Link href="https://miva.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                             Miva
                         </Link>
-                        <Link href="/careers" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                        <Link href="/careers" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4 hover:text-blue-600 transition-colors">
                             Careers
                         </Link>
                     </nav>
