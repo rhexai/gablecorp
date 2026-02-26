@@ -93,6 +93,9 @@ export default function Navbar() {
                     <Link href="https://scriptlabs.gablecorp.com" target="_blank" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Scriptlabs Digital
                     </Link>
+                    <Link href="https://miva.gablecorp.com" target="_blank" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
+                        Miva
+                    </Link>
                     <Link href="/careers" className="text-[15px] font-medium text-gray-600 hover:text-blue-600 transition-colors">
                         Careers
                     </Link>
@@ -158,6 +161,9 @@ export default function Navbar() {
                         </Link>
                         <Link href="https://scriptlabs.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                             Scriptlabs Digital
+                        </Link>
+                        <Link href="https://miva.gablecorp.com" target="_blank" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
+                            Miva
                         </Link>
                         <Link href="/careers" onClick={() => setIsMenuOpen(false)} className="border-b border-gray-100 pb-4">
                             Careers

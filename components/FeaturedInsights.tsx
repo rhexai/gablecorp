@@ -20,13 +20,13 @@ export default async function FeaturedInsights() {
         .limit(3);
 
     return (
-        <section id="insights" className="py-24 bg-white">
+        <section id="insights" className="py-16 md:py-24 bg-white">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-                <div className="flex justify-between items-end mb-16">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-4">
                     <h2 className="text-3xl md:text-4xl font-serif font-medium text-navy-900">
                         Featured Insights
                     </h2>
-                    <Link href="/insights" className="hidden md:flex items-center text-blue-600 font-semibold hover:underline">
+                    <Link href="/insights" className="flex items-center text-blue-600 font-semibold hover:underline">
                         View all insights
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 ml-2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />

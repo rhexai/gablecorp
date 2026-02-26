@@ -2,13 +2,13 @@ import Link from "next/link";
 
 export default function FeaturedMedia() {
     return (
-        <section className="bg-blue-600 text-white py-24">
-            <div className="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <section className="bg-blue-600 text-white py-16 md:py-24">
+            <div className="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
                 <div>
-                    <h2 className="text-4xl md:text-5xl font-serif mb-6">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif mb-6">
                         The Gablecorp Podcast
                     </h2>
-                    <p className="text-xl text-blue-100 leading-relaxed mb-10">
+                    <p className="text-lg md:text-xl text-blue-100 leading-relaxed mb-8 md:mb-10">
                         A shortcut to clarity in a noisy world, The Gablecorp Podcast dives into the ideas, issues, and innovations reshaping business, the economy, and society. Tune in to hear from Gablecorp experts and thought leaders.
                     </p>
                     <Link href="/insights" className="inline-flex items-center bg-white text-blue-600 font-bold py-4 px-8 rounded hover:bg-navy-900 hover:text-white transition-colors">
