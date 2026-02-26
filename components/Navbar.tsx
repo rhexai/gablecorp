@@ -117,13 +117,13 @@ export default function Navbar() {
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <div className="md:hidden z-50 flex items-center gap-4">
+                <div className="md:hidden z-[60] flex items-center gap-4">
                     <SignedIn>
                         <UserButton />
                     </SignedIn>
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="text-navy-900 p-2 focus:outline-none"
+                        className={`${scrolled || isMenuOpen ? "text-navy-900" : "text-white"} p-2 focus:outline-none transition-colors`}
                     >
                         {isMenuOpen ? (
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">

@@ -40,7 +40,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased overflow-x-hidden w-full`}
         >
           {children}
           <Analytics />
