@@ -2,8 +2,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import DashboardSidebar from "../../components/DashboardSidebar";
-import DashboardHeader from "../../components/DashboardHeader";
+import DashboardSidebar from "@/components/DashboardSidebar";
+import DashboardHeader from "@/components/DashboardHeader";
 
 export default async function DashboardLayout({
     children,
@@ -17,13 +17,16 @@ export default async function DashboardLayout({
     }
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50">
-            <DashboardHeader />
+        <div className="min-h-screen bg-[#f8fafc]">
+            {/* Sidebar - Fixed to screen edge */}
+            <DashboardSidebar />
 
-            {/* Main Content */}
-            <div className="flex-1 flex max-w-[1400px] mx-auto w-full pt-16">
-                <DashboardSidebar />
-                <main className="flex-1 py-8 md:py-12 px-6 md:px-12 min-w-0">
+            <div className="flex flex-col min-h-screen md:pl-64">
+                {/* Header - Fixed but width adjusted for sidebar */}
+                <DashboardHeader />
+
+                {/* Main Content Area */}
+                <main className="flex-1 w-full max-w-7xl mx-auto py-8 px-4 md:px-8 pt-28">
                     {children}
                 </main>
             </div>
