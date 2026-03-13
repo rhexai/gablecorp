@@ -16,14 +16,13 @@ const services = [
     { name: "Consultancy", href: "/dashboard/services/consultancy" },
 ];
 
-export default function DashboardSidebar() {
+export default function DashboardSidebar({ isOpen, setIsOpen }: { isOpen?: boolean, setIsOpen?: (val: boolean) => void }) {
     const pathname = usePathname();
     const { user } = useUser();
     
     // Collapsible states
-    const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({
-        "Services": true
-    });
+    const [openMenus, setOpenMenus] = useState<Record<string, boolean>>({});
+    const [isCompanyDropdownOpen, setIsCompanyDropdownOpen] = useState(false);
 
     const toggleMenu = (name: string) => {
         setOpenMenus(prev => ({ ...prev, [name]: !prev[name] }));
@@ -36,13 +35,17 @@ export default function DashboardSidebar() {
         { name: "Payments", href: "/dashboard", icon: <svg width="16" height="16" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V4.22c0-.756-.728-1.296-1.453-1.096A60.864 60.864 0 012.25 5.25v13.5z" /></svg> },
         { name: "Insights", href: "/insights", icon: <svg width="16" height="16" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h10.5m-10.5-6h10.5m-10.5-3h10.5m-10.5 12h10.5m-9-14c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg> },
     ];
-    ];
-
     return (
-        <aside className="w-64 bg-white flex-shrink-0 hidden md:flex flex-col h-screen fixed top-0 left-0 border-r border-gray-100/60 z-30">
+        <aside className={`
+            w-64 bg-white flex-shrink-0 flex flex-col h-screen fixed top-0 left-0 border-r border-gray-100/60 z-40 transition-transform duration-300 ease-in-out md:translate-x-0
+            ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        `}>
             {/* Top Company Switcher (REFINED) */}
-            <div className="p-4">
-                <div className="flex items-center gap-3 p-3 bg-gray-50/50 rounded-xl border border-gray-100/50 cursor-pointer hover:bg-gray-50 transition-all group overflow-hidden">
+            <div className="p-4 relative">
+                <div 
+                    onClick={() => setIsCompanyDropdownOpen(!isCompanyDropdownOpen)}
+                    className="flex items-center gap-3 p-3 bg-gray-50/50 rounded-xl border border-gray-100/50 cursor-pointer hover:bg-gray-50 transition-all group overflow-hidden"
+                >
                     <div className="relative w-10 h-10 rounded-lg bg-gray-100 flex-shrink-0 border border-gray-200 shadow-sm overflow-hidden">
                         {user?.imageUrl ? (
                             <Image 
@@ -55,70 +58,78 @@ export default function DashboardSidebar() {
                             <div className="w-full h-full flex items-center justify-center text-xs font-bold text-gray-400">G</div>
                         )}
                     </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-navy-900 truncate tracking-tight">Scriptlabs Digital (Gablecorp)</p>
-                        <p className="text-[10px] font-bold text-gray-300 uppercase tracking-tighter mt-0.5">ID:41508-81...</p>
+                    <div className="flex-1 min-w-0 text-left">
+                        <p className="text-[10px] font-black uppercase tracking-widest text-[#1e8636] leading-none mb-1">GH-92383</p>
+                        <p className="text-xs font-black text-navy-900 truncate">Gablecorp</p>
                     </div>
-                    <svg className="w-3 h-3 text-gray-300 group-hover:text-gray-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <svg width="12" height="12" className={`w-3 h-3 text-gray-300 group-hover:text-gray-400 transition-transform ${isCompanyDropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </div>
+
+                {/* Company Switcher Dropdown */}
+                {isCompanyDropdownOpen && (
+                    <div className="absolute top-20 left-4 right-4 bg-white border border-gray-100 rounded-xl shadow-xl z-50 py-2 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-50 mb-1">
+                            <p className="text-xs font-bold text-navy-900">Scriptlabs Digital</p>
+                            <p className="text-[10px] text-gray-400">GH-102933</p>
+                        </div>
+                        <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                            <p className="text-xs font-bold text-gray-400">+ Add Business</p>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Navigation Links */}
             <div className="flex-1 overflow-y-auto py-2 flex flex-col gap-1 hide-scrollbar">
                 {navItems.map((item) => {
-                    const isActive = pathname === item.href || (item.isServices && pathname.includes('/dashboard/services'));
+                    const isActive = pathname === item.href || (item.isServices && pathname.startsWith("/dashboard/services"));
                     
                     return (
                         <div key={item.name} className="px-3">
                             <button
-                                onClick={() => item.hasChevron ? toggleMenu(item.name) : null}
-                                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-all group ${
-                                    isActive 
-                                    ? "bg-[#e8f5e9] text-[#1e8636] font-medium border-l-4 border-[#1e8636]" 
-                                    : "text-gray-600 hover:bg-gray-50 border-l-4 border-transparent"
+                                onClick={item.hasChevron ? () => toggleMenu(item.name) : undefined}
+                                className={`w-full group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
+                                    isActive
+                                        ? "bg-[#e8f5e9] text-[#1e8636] shadow-sm shadow-[#1e8636]/5"
+                                        : "text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                                 }`}
                             >
-                                <div className="flex items-center gap-3">
-                                    <span className={`${isActive ? "text-[#1e8636]" : "text-gray-400 group-hover:text-gray-600"}`}>
-                                        {item.icon}
-                                    </span>
-                                    {item.href === "#" && !item.isServices ? (
-                                        <span>{item.name}</span>
-                                    ) : (
-                                        <Link href={item.href} className="flex-1 text-left">{item.name}</Link>
-                                    )}
-                                </div>
                                 {item.hasChevron && (
                                     <svg 
-                                        className={`w-3 h-3 transition-transform ${openMenus[item.name] ? 'rotate-90' : ''} ${isActive ? "text-[#1e8636]" : "text-gray-300 group-hover:text-gray-400"}`} 
+                                        width="10"
+                                        height="10"
+                                        className={`transition-transform flex-shrink-0 ${openMenus[item.name] ? 'rotate-90' : ''} ${isActive ? "text-[#1e8636]" : "text-gray-300 group-hover:text-gray-400"}`} 
                                         fill="none" 
                                         viewBox="0 0 24 24" 
                                         stroke="currentColor" 
-                                        strokeWidth={2.5}
+                                        strokeWidth={3}
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                                     </svg>
                                 )}
+                                <span className={`flex-1 text-sm font-medium tracking-tight text-left ${item.hasChevron ? 'ml-0.5' : ''}`}>{item.name}</span>
                             </button>
 
-                            {/* Nested Services Submenu */}
-                            {item.isServices && openMenus[item.name] && (
-                                <div className="mt-1 ml-10 flex flex-col gap-1 border-l-2 border-gray-100 pl-3 py-1">
-                                    {services.map((service) => (
-                                        <Link
-                                            key={service.name}
-                                            href={service.href}
-                                            className={`py-2 px-3 text-xs rounded-md transition-colors ${
-                                                pathname.startsWith(service.href)
-                                                    ? "text-[#1e8636] font-semibold bg-[#e8f5e9]/50"
-                                                    : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
-                                            }`}
-                                        >
-                                            {service.name}
-                                        </Link>
-                                    ))}
+                            {/* Nested Services Submenu (DROP DOWN ANIMATION) */}
+                            {item.isServices && (
+                                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openMenus[item.name] ? 'max-h-40 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                                    <div className="ml-10 flex flex-col gap-1 border-l-2 border-gray-100 pl-3 py-1">
+                                        {services.map((service) => (
+                                            <Link
+                                                key={service.name}
+                                                href={service.href}
+                                                className={`py-2 px-3 text-xs rounded-md transition-colors ${
+                                                    pathname.startsWith(service.href)
+                                                        ? "text-[#1e8636] font-semibold bg-[#e8f5e9]/50"
+                                                        : "text-gray-500 hover:text-gray-800 hover:bg-gray-50"
+                                                }`}
+                                            >
+                                                {service.name}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             )}
                         </div>

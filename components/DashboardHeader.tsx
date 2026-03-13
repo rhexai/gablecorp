@@ -4,13 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { UserButton, useUser } from "@clerk/nextjs";
 
-export default function DashboardHeader() {
+export default function DashboardHeader({ onMenuClick }: { onMenuClick?: () => void }) {
     const { user } = useUser();
     
     return (
         <header className="fixed top-0 right-0 left-0 md:left-64 z-40 bg-white/80 backdrop-blur-md h-20 flex items-center justify-between px-8 transition-all border-b border-gray-100/60">
             <div className="flex items-center gap-4">
-                <button className="text-gray-400 hover:text-navy-900 transition-colors">
+                <button 
+                    onClick={onMenuClick}
+                    className="text-gray-400 hover:text-navy-900 transition-colors md:hidden"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
