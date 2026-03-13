@@ -8,7 +8,7 @@ export default function DashboardHeader({ onMenuClick }: { onMenuClick?: () => v
     const { user } = useUser();
     
     return (
-        <header className="fixed top-0 right-0 left-0 md:left-64 z-40 bg-white/80 backdrop-blur-md h-20 flex items-center justify-between px-8 transition-all border-b border-gray-100/60">
+        <header className="fixed top-0 right-0 left-0 md:left-64 z-40 bg-white/80 backdrop-blur-md h-20 flex items-center justify-between px-4 md:px-8 transition-all border-b border-gray-100/60">
             <div className="flex items-center gap-4">
                 <button 
                     onClick={onMenuClick}

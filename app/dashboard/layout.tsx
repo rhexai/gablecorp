@@ -12,16 +12,17 @@ export default function DashboardLayout({
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
-        <div className="min-h-screen bg-[#f8fafc]">
+        <div className="min-h-screen bg-white flex">
             {/* Sidebar - Overlay on mobile, fixed on desktop */}
             <DashboardSidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
 
-            <div className="flex flex-col min-h-screen md:pl-64">
-                {/* Header - Fixed but width adjusted for sidebar */}
+            {/* Main Content Wrapper - Takes up remaining width */}
+            <div className="flex-1 flex flex-col min-h-screen min-w-0 md:ml-64 bg-white transition-all duration-300">
+                {/* Header */}
                 <DashboardHeader onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
 
                 {/* Main Content Area */}
-                <main className="flex-1 w-full max-w-7xl mx-auto py-8 px-4 md:px-8 pt-28">
+                <main className="flex-1 w-full max-w-5xl mx-auto py-8 px-4 md:px-8 pt-28">
                     {children}
                 </main>
             </div>
